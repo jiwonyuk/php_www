@@ -11,10 +11,14 @@ class TableInfo
     }
     public function main()
     {
-        $html = new \Module\Html\HtmlTable;
+        $html = new \Module\Html\HtmlTable; 
+        $uri = $_SERVER['REQUEST_URI'];
+        $uris = explode("/",$uri);
+
         // echo "메인 호출이에요.";
-        $query = "DESC members";
+        $query = "DESC ".$uris[2];
         $result = $this->db->queryExecute($query);
+
         $count = mysqli_num_rows($result);
         $content = ""; // 초기화
         $rows = []; // 배열 초기화
