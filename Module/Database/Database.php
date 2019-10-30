@@ -1,4 +1,5 @@
 <?php
+namespace Module\Database;
 
 class Database  // data_base : snake case,   dataBase : camel case
 {
@@ -22,14 +23,14 @@ class Database  // data_base : snake case,   dataBase : camel case
     // 생성자 메소드(함수)
     public function __construct($config)
     {
-        $this->Table = new Table($this);
+        $this->Table = new \Module\Database\Table($this);
 
-        echo "클래스 생성";
-        $this->connect = new mysqli($config['host'], $config['user'], $config['passwd'], $config['database']);
+        //echo "클래스 생성";
+        $this->connect = new \mysqli($config['host'], $config['user'], $config['passwd'], $config['database']);
         // 성공 : connect_errno = 0 .. ! 1
         // 실패 : connect_errno = 1 .. ! 0
         if (!$this->connect->connect_errno) {
-          echo "DB 접속 성공이에요.";
+          //echo "DB 접속 성공이에요.";
         } else {
             echo "접속이 안되요.";
         }
@@ -38,7 +39,7 @@ class Database  // data_base : snake case,   dataBase : camel case
     {
         $result = mysqli_query($this->connect, $query);
         if($result) {
-            echo "쿼리 성공.";
+            //echo "쿼리 성공.";
         } else {
             print "쿼리 실패.";
         }
