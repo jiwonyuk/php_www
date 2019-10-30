@@ -20,7 +20,11 @@ class Tables
         $rows = []; // 배열 초기화
         for ($i=0;$i<$count;$i++) {
             $row = mysqli_fetch_object($result);
-            $rows []= $row; // 배열 추가
+            //$rows []= $row; // 배열 추가
+            $rows []=[
+              'num'=>$i,
+              'name'=>"<a href='/TableInfo/".$row->Tables_in_php."'>".$row->Tables_in_php."</a></td>"  
+            ];
         }
         $content = $html->table($rows);
         $body = file_get_contents("../Resource/table.html");
